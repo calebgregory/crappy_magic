@@ -2,7 +2,7 @@
 
 ## API Spec
 
-``
+```
 GET /item/:number
   returns json formatted
 {
