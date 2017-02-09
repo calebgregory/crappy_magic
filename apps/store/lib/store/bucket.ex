@@ -1,10 +1,13 @@
-defmodule Store do
+defmodule Store.Bucket do
   @moduledoc """
   Stores the Items in memory and provides access to these.
   """
 
   require CSV
 
+  @doc"""
+  Starts a new bucket which holds data populated by the configured csv file.
+  """
   def start_link do
     data =
       Application.get_env(:store, :store_csv)
@@ -14,6 +17,9 @@ defmodule Store do
     Agent.start_link(fn -> data end)
   end
 
+  @doc """
+  Gets item at key `slug` in `bucket`.
+  """
   def get(bucket, slug) do
     Agent.get(bucket, &Map.get(&1, slug))
   end
