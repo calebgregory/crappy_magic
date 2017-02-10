@@ -7,14 +7,20 @@ defmodule Store.Bucket do
 
   @doc"""
   Starts a new bucket which holds data populated by the configured csv file.
+
+  Validates csv. If invalid, returns `{:error, :invalid_csv}`
   """
   def start_link do
-    data =
+    csvStream =
       Application.get_env(:store, :store_csv)
-      |> parse_csv
-      |> Enum.reduce(%{}, fn(item, acc) -> Map.put(acc, item.slug, item) end)
+      |> File.stream!
 
-    Agent.start_link(fn -> data end)
+    if valid?(csvStream) do
+      data = csvStream |> to_map
+      Agent.start_link(fn -> data end)
+    else
+      {:error, :invalid_csv}
+    end
   end
 
   @doc """
@@ -43,9 +49,16 @@ defmodule Store.Bucket do
     ]
   end
 
-  defp parse_csv(file) do
-    file
-    |> File.stream!
-    |> CSV.Decoder.decode(separator: ?|, headers: headers())
+  defp valid?(stream) do
+    CSV.Decoder.decode(stream, separator: ?|)
+    |> Enum.at(0)
+    |> Enum.zip(headers())
+    |> Enum.all?(fn {str, atm} -> str == to_string(atm) end)
+  end
+
+  def to_map(stream) do
+    stream |>
+    CSV.Decoder.decode(separator: ?|, headers: headers())
+    Enum.reduce(%{}, fn(item, acc) -> Map.put(acc, item.slug, item) end)
   end
 end
