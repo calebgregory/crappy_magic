@@ -30,6 +30,9 @@ defmodule Store.Bucket do
     Agent.get(bucket, &Map.get(&1, slug))
   end
 
+  @doc"""
+  Ordered list of `headers`.
+  """
   defp headers do
     [
       :slug,
@@ -49,6 +52,11 @@ defmodule Store.Bucket do
     ]
   end
 
+  @doc"""
+  Takes first row of csv (the headers) and compares these to the stored
+  `headers`. If each item at a given index in each of these lists is equal
+  when converted to a string, then the csv is valid.
+  """
   defp valid?(stream) do
     CSV.Decoder.decode(stream, separator: ?|)
     |> Enum.at(0)
@@ -56,6 +64,9 @@ defmodule Store.Bucket do
     |> Enum.all?(fn {str, atm} -> str == to_string(atm) end)
   end
 
+  @doc"""
+  Reduces a csv file stream into a map from string `slug` to `item`.
+  """
   def to_map(stream) do
     stream |>
     CSV.Decoder.decode(separator: ?|, headers: headers())
