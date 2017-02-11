@@ -1,16 +1,16 @@
 defmodule Store.Supervisor do
   use Supervisor
 
-  def start_link do
-    Supervisor.start_link(__MODULE__, :ok)
+  def start_link(items) do
+    Supervisor.start_link(__MODULE__, items)
   end
 
-  def init(:ok) do
+  def init(items) do
     children = [
       worker(Store.Registry, [Store.Registry]),
-      supervisor(Store.Bucket.Supervisor, [])
+      supervisor(Store.Bucket.Supervisor, [items])
     ]
 
-    supervise(children, strategy: :one_for_one)
+    supervise(children, strategy: :rest_for_one)
   end
 end

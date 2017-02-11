@@ -6,8 +6,8 @@ defmodule Store.Bucket do
   @doc"""
   Starts a new Agent which holds a new map
   """
-  def start_link do
-    Agent.start_link(fn -> %{} end)
+  def start_link(name, items) do
+    Agent.start_link(fn -> items end, name: name)
   end
 
   @doc """

@@ -4,17 +4,17 @@ defmodule Store.Bucket.Supervisor do
   # A simple module attribute that stores the supervisor name
   @name Store.Bucket.Supervisor
 
-  def start_link do
-    Supervisor.start_link(__MODULE__, :ok, name: @name)
+  def start_link(items) do
+    Supervisor.start_link(__MODULE__, items, name: @name)
   end
 
   def start_bucket do
     Supervisor.start_child(@name, [])
   end
 
-  def init(:ok) do
+  def init(items) do
     children = [
-      worker(Store.Bucket, [], restart: :temporary)
+      worker(Store.Bucket, [Store.Bucket, items], restart: :permanent)
     ]
 
     supervise(children, strategy: :simple_one_for_one)
