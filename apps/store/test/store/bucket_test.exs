@@ -2,9 +2,9 @@ defmodule Store.BucketTest do
   use ExUnit.Case, async: true
   doctest Store.Bucket
 
-  setup do
+  setup context do
     items = %{"420" => %{slug: "420", p: "q"}}
-    {:ok, bucket} = Store.Bucket.start_link(items)
+    {:ok, bucket} = Store.Bucket.start_link(context.test, items)
     {:ok, bucket: bucket, items: items}
   end
 
