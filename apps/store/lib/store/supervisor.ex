@@ -7,7 +7,8 @@ defmodule Store.Supervisor do
 
   def init(:ok) do
     children = [
-      worker(Store.Bucket, [])
+      worker(Store.Registry, [Store.Registry]),
+      supervisor(Store.Bucket.Supervisor, [])
     ]
 
     supervise(children, strategy: :one_for_one)

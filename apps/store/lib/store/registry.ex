@@ -1,8 +1,21 @@
 defmodule Store.Registry do
+  @moduledoc"""
+  Registry maps given `id` to process id of `bucket` that holds items.
+  """
   use GenServer
 
-  def start_link do
-    GenServer.start_link(__MODULE__, :ok, [])
+  @doc"""
+  Starts and returns `registry`.
+  """
+  def start_link(name) do
+    GenServer.start_link(__MODULE__, :ok, name: name)
+  end
+
+  @doc"""
+  Stops the registry.
+  """
+  def stop(server) do
+    GenServer.stop(server)
   end
 
   @doc"""
@@ -24,25 +37,45 @@ defmodule Store.Registry do
   %{}.
   """
   def init(:ok) do
-    {:ok, %{}}
+    buckets = %{}
+    refs    = %{}
+    {:ok, {buckets, refs}}
   end
 
   @doc"""
   Hander for `lookup`. Returns the `bucket` at that `id` (or `nil`).
   """
-  def handle_call({:lookup, id}, _from, state) do
-    {:reply, Map.fetch(state, id), state}
+  def handle_call({:lookup, id}, _from, {buckets, refs}) do
+    {:reply, Map.fetch(buckets, id), {buckets, refs}}
   end
 
   @doc"""
-  Hander for `create`. Is synchronous. Returns `:ok`.
+  Hander for `create`. Is synchronous. Registers an `id` with a `bucket`,
+  monitors the `bucket` process, stores the `ref` returned by `Process.monitor`
+  in `refs`. Returns `:ok`.
   """
-  def handle_call({:create, id}, _from, state) do
-    if Map.has_key?(state, id) do
-      {:reply, :ok, state}
+  def handle_call({:create, id}, _from, {buckets, refs}) do
+    if Map.has_key?(buckets, id) do
+      {:reply, :ok, {buckets, refs}}
     else
-      {:ok, bucket} = Store.Bucket.start_link
-      {:reply, :ok, Map.put(state, id, bucket)}
+      {:ok, pid} = Store.Bucket.Supervisor.start_bucket
+      ref        = Process.monitor(pid)
+      refs       = Map.put(refs, ref, id)
+      buckets    = Map.put(buckets, id, pid)
+      {:reply, :ok, {buckets, refs}}
     end
+  end
+
+  @doc"""
+  Handles :DOWN message received from a monitored process.
+  """
+  def handle_info({:DOWN, ref, :process, _pid, _reason}, {buckets, refs}) do
+    {id, refs} = Map.pop(refs, ref)
+    buckets = Map.delete(buckets, id)
+    {:noreply, {buckets, refs}}
+  end
+
+  def handle_info(_msg, state) do
+    {:noreply, state}
   end
 end
