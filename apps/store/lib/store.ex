@@ -3,6 +3,6 @@ defmodule Store do
 
   def start(_type, _args) do
     {:ok, items} = Store.Datasource.init
-    Store.Supervisor.start_link(items)
+    Store.Bucket.Supervisor.start_link(items)
   end
 end
