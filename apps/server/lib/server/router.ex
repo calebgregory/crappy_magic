@@ -7,6 +7,9 @@ defmodule Server.Router do
   plug :match
   plug :dispatch
 
+  @doc"""
+  API method for client wanting data about some item (using barcode slug).
+  """
   get "/item/:slug" do
     case Store.Bucket.get(Store.Bucket, slug) do
       {:ok, item} ->

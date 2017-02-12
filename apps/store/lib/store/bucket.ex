@@ -1,5 +1,5 @@
 defmodule Store.Bucket do
-  @moduledoc """
+  @moduledoc"""
   Stores an Item in memory and provides access to it.
   """
 
@@ -10,7 +10,7 @@ defmodule Store.Bucket do
     Agent.start_link(fn -> items end, name: name)
   end
 
-  @doc """
+  @doc"""
   Gets item at key `slug` in `bucket`.
   """
   def get(bucket, slug) do

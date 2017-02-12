@@ -1,6 +1,6 @@
 defmodule Store.Datasource do
   @doc"""
-  Reads file (declared in `../../config/config.exs`), parses it to map
+  Reads file (declared in `config/config.exs`), parses it to map
   from string `slug` => `%{}`.
   """
   require CSV

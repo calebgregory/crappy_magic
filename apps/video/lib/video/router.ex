@@ -5,9 +5,13 @@ defmodule Video.Router do
   plug :match
   plug :dispatch
 
+  @doc"""
+  Serves video from file storage if exists; otherwise, returns 404.
+  """
   get "/videos/:slug" do
     video_file = "#{slug}.mp4"
     file_path = Path.join(Application.get_env(:video, :vid_dir), video_file)
+
     if File.exists?(file_path) do
       size = get_file_size(file_path)
 
@@ -18,6 +22,10 @@ defmodule Video.Router do
     else
       send_resp(conn, 404, "No video found for slug #{slug}")
     end
+  end
+
+  match _ do
+    send_resp(conn, 404, "Not found")
   end
 
   defp get_file_size(path) do
