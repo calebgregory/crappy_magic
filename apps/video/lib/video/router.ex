@@ -6,7 +6,6 @@ defmodule Video.Router do
   plug :dispatch
 
   get "/videos/:slug" do
-    IO.puts(inspect conn.req_headers)
     video_file = "#{slug}.mp4"
     file_path = Path.join(Application.get_env(:video, :vid_dir), video_file)
     if File.exists?(file_path) do
