@@ -15,5 +15,7 @@ import_config "../apps/*/config/config.exs"
 #       level: :info,
 #       format: "$date $time [$level] $metadata$message\n",
 #       metadata: [:user_id]
+config :server, port: 4001
+config :store, store_csv: Path.expand("../storage/items.csv", __DIR__)
+config :video, port: 4002
 config :video, vid_dir: Path.expand("../vid", __DIR__)
-config :store, store_csv: Path.expand("../storage/", __DIR__)

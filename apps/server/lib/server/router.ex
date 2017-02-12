@@ -12,6 +12,7 @@ defmodule Server.Router do
       {:ok, item} ->
         conn
         |> put_resp_content_type("application/json")
+        |> put_resp_header("Access-Control-Allow-Origin", "*")
         |> send_resp(200, Poison.encode!(item))
       _ ->
         send_resp(conn, 404, "No item found with slug #{slug}")
