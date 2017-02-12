@@ -10,7 +10,7 @@ defmodule Store.Bucket.SupervisorTest do
   end
 
   test "inits with child Store.Bucket", %{items: items} do
-    assert Store.Bucket.get(Store.Bucket, "420") == Map.get(items, "420")
+    assert Store.Bucket.get(Store.Bucket, "420") == Map.fetch(items, "420")
   end
 
   test "restarts child if child stops", %{bucket: bucket, items: items, sup: sup} do
@@ -22,7 +22,7 @@ defmodule Store.Bucket.SupervisorTest do
 
     # Bogus call to sup; blocks until Supervisor is ready
     [_] = Supervisor.which_children(sup)
-    assert Store.Bucket.get(Store.Bucket, "420") == Map.get(items, "420")
+    assert Store.Bucket.get(Store.Bucket, "420") == Map.fetch(items, "420")
   end
 
   test "restarts child if child crashes", %{bucket: bucket, items: items, sup: sup} do
@@ -35,6 +35,6 @@ defmodule Store.Bucket.SupervisorTest do
 
     # Bogus call to sup; blocks until Supervisor is ready
     [_] = Supervisor.which_children(sup)
-    assert Store.Bucket.get(Store.Bucket, "420") == Map.get(items, "420")
+    assert Store.Bucket.get(Store.Bucket, "420") == Map.fetch(items, "420")
   end
 end

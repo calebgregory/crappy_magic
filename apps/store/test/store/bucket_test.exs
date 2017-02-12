@@ -9,6 +9,6 @@ defmodule Store.BucketTest do
   end
 
   test "starts with data from init", %{bucket: bucket, items: items} do
-    assert Store.Bucket.get(bucket, "420") == Map.get(items, "420")
+    assert Store.Bucket.get(bucket, "420") == Map.fetch(items, "420")
   end
 end

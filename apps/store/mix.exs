@@ -22,9 +22,6 @@ defmodule Store.Mixfile do
   end
 
   defp deps do
-    [
-      {:csv, "~> 1.4.2"},
-      {:poison, "~> 3.0"}
-    ]
+    [{:csv, "~> 1.4.2"}]
   end
 end

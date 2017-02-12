@@ -14,6 +14,6 @@ defmodule Store.Bucket do
   Gets item at key `slug` in `bucket`.
   """
   def get(bucket, slug) do
-    Agent.get(bucket, &Map.get(&1, slug))
+    Agent.get(bucket, &Map.fetch(&1, slug))
   end
 end
