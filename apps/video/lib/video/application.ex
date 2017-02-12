@@ -4,9 +4,8 @@ defmodule Video.Application do
   use Application
 
   def start(_type, _args) do
-    import Supervisor.Spec
-
     port = Application.get_env(:video, :port)
+    IO.puts("Video server listening on http://localhost:#{port}")
 
     children = [
       Plug.Adapters.Cowboy.child_spec(:http, Video.Router, [], [port: port])

@@ -20,3 +20,21 @@ GET /item/:number
   mature_content <Boolean>
 }
 ```
+
+## Check it out
+
+1. Start the client
+```bash
+$ bin/start_sample_client
+```
+2. Start the item server
+```bash
+$ bin/start_item_server
+```
+3. Start the video server
+```bash
+$ bin/start_video_server
+```
+
+Then hop on over to [the client](http://localhost:3001) and watch it
+roll!
