@@ -6,10 +6,58 @@
   </head>
   <body>
     <div>
+      <h1>Item</h1>
+      <div id="item"></div>
       <h1>Video</h1>
       <video autoplay controls>
         <source src="http://localhost:4002/videos/12345" type="video/mp4" />
       </video>
     </div>
+    <script>
+      const ITEM_API_URL = 'http://localhost:4001';
+
+      function getItem(slug, cb) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', `${ITEM_API_URL}/item/${slug}`);
+        xhr.responseType = 'json';
+
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            cb(null, xhr.response);
+          } else {
+            cb('request went wrong');
+          }
+        }
+
+        xhr.send();
+      }
+
+      function addItemDetails(err, json) {
+        if (err) {
+          console.log(err);
+          return;
+        }
+
+        var item = document.getElementById("item");
+        var ul = document.createElement('UL');
+        for (field in json) {
+          var li = genFieldElement(field, json[field]);
+          ul.appendChild(li);
+        }
+
+        item.appendChild(ul);
+      }
+
+      function genFieldElement(field, value) {
+        var li = document.createElement('LI');
+        var text = `${field}: ${value}`;
+        var textNode = document.createTextNode(text)
+
+        li.appendChild(textNode);
+        return li;
+      }
+
+      getItem("12345", addItemDetails)
+    </script>
   </body>
 </html>
