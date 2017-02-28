@@ -10,11 +10,11 @@
       <div id="item"></div>
       <h1>Video</h1>
       <video autoplay controls>
-        <source src="http://localhost:4002/videos/12345" type="video/mp4" />
+        <source src="http://10.123.89.10:4002/videos/12345" type="video/mp4" />
       </video>
     </div>
     <script>
-      const ITEM_API_URL = 'http://localhost:4001';
+      const ITEM_API_URL = 'http://10.123.89.10:4001';
 
       function getItem(slug, cb) {
         var xhr = new XMLHttpRequest();
