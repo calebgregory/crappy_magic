@@ -1,6 +1,0 @@
-#!/bin/sh
-
-DIR=`dirname $BASH_SOURCE[0]`
-CLIENT_DIR="${DIR}/../sample_client"
-cd ${CLIENT_DIR}
-node server.js
