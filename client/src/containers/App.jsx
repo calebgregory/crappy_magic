@@ -38,7 +38,7 @@ export default class App extends Component {
 
     if (timeoutId) {
       clearTimeout(timeoutId);
-      setState({ timeoutId: null });
+      this.setState({ timeoutId: null });
     }
 
     this.setState({ view }, () => {
