@@ -53,7 +53,8 @@ export default class MatureContentWarning extends Component {
 
   render() {
     return <div>
-      <p>This video contains mature content. Do you wish to see it? {this.renderOptions()}</p>
+      <p>This video contains mature content.</p>
+      <p>Do you wish to see it? {this.renderOptions()}</p>
     </div>;
   }
 }

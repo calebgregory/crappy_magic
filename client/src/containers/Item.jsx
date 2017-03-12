@@ -31,14 +31,24 @@ export default class Item extends Component {
     const url = `${config.VIDEO_API_URL}/videos/${slug}`;
 
     return (
-      <div>
-        <h1>{item.title}</h1>
-        <ItemInfo item={item} />
-        {
-          showVideo ?
-            <Video url={url} /> :
-            <MatureContentWarning onApprove={this.toggleShowVideo} />
-        }
+      <div id="item-container">
+        <div className="row">
+          <h1 id="item-title">{item.title}</h1>
+        </div>
+        <div className="row">
+          <div className="six columns">
+            <ItemInfo item={item} />
+          </div>
+          <div className="six columns">
+            <div id="video-container">
+              {
+                showVideo ?
+                  <Video url={url} /> :
+                  <MatureContentWarning onApprove={this.toggleShowVideo} />
+              }
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

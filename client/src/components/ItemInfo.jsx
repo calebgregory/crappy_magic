@@ -12,45 +12,37 @@ export default class ItemInfo extends Component {
 
     return (
       <div>
-        <p>{item.description}</p>
+        <div className="text">{item.description}</div>
 
         <h5>Materials</h5>
-        <p>{item.materials}</p>
+        <div className="text">{item.materials}</div>
 
         <h5>Manufacture Info</h5>
-        <p>{item.manufacture_info}</p>
+        <div className="text">{item.manufacture_info}</div>
 
         <h5>Owner</h5>
-        <table>
-          <tbody>
-            <tr>
-              <td>Name</td>
-              <td>{item.owner_name}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{item.owner_email}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="row">
+          <div className="field three columns">Name</div>
+          <div className="value nine columns">{item.owner_name}</div>
+        </div>
+        <div className="row">
+          <div className="field three columns">Email</div>
+          <div className="value nine columns">{item.owner_email}</div>
+        </div>
 
         <h5>Video Creator</h5>
-        <table>
-          <tbody>
-            <tr>
-              <td>Name</td>
-              <td>{item.video_creator_name}</td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td>{item.video_creator_email}</td>
-            </tr>
-            <tr>
-              <td>Instagram</td>
-              <td>{item.video_creator_instagram_handle}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="row">
+          <div className="field three columns">Name</div>
+          <div className="value nine columns">{item.video_creator_name}</div>
+        </div>
+        <div className="row">
+          <div className="field three columns">Email</div>
+          <div className="value nine columns">{item.video_creator_email}</div>
+        </div>
+        <div className="row">
+          <div className="field three columns">Instagram</div>
+          <div className="value nine columns">{item.video_creator_instagram_handle}</div>
+        </div>
       </div>
     );
   }
