@@ -5,21 +5,49 @@ export default class ScannerForm extends Component {
     super(props);
 
     this.state = {
-      slug: ''
+      slug: '',
+      lastInputTime: -Infinity,
+      timeoutId: null,
+      intervalId: null,
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    this.refs.slug.focus();
+    console.log(this.refs.slug)
+    const intervalId = setInterval(() => this.refs.slug.focus(), 500);
+    this.setState({ intervalId });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
+  }
+
   handleChange(event) {
+    const slug = event.target.value;
+    const thisInputTime = Date.now();
+    const { lastInputTime } = this.state;
+
     this.setState({
-      slug: event.target.value
+      slug,
+      lastInputTime: thisInputTime
     });
+
+    const diff = thisInputTime - lastInputTime;
+    if (0 < diff && diff < 50) {
+      clearTimeout(this.state.timeoutId);
+      const timeoutId = setTimeout(() => this.handleSubmit(), 50)
+      this.setState({ timeoutId });
+    }
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
 
     this.props.onSubmit(this.state.slug);
     this.setState({ slug: '' });
@@ -27,7 +55,12 @@ export default class ScannerForm extends Component {
 
   render() {
     return <form onSubmit={this.handleSubmit}>
-      <input type="text" value={this.state.slug} onChange={this.handleChange} />
+      <input
+        type="text"
+        id="slug-input"
+        ref="slug"
+        value={this.state.slug}
+        onChange={this.handleChange} />
     </form>;
   }
 }

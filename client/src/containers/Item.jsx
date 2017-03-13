@@ -20,6 +20,15 @@ export default class Item extends Component {
     this.toggleShowVideo = this.toggleShowVideo.bind(this);
   }
 
+  componentWillReceiveProps(props) {
+    const { item } = props;
+    const showVideo = (
+      item.mature_content === 'false' || item.mature_content !== 'true'
+    );
+
+    this.setState({ showVideo });
+  }
+
   toggleShowVideo() {
     this.setState({ showVideo: !this.state.showVideo });
   }
@@ -31,7 +40,7 @@ export default class Item extends Component {
     const url = `${config.VIDEO_API_URL}/videos/${slug}`;
 
     return (
-      <div id="item-container" className="container">
+      <div id="item-container" className="app-container">
         <div className="row">
           <h1 id="item-title">{item.title}</h1>
         </div>

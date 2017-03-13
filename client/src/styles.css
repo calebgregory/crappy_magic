@@ -2,7 +2,7 @@ body {
   background: #1e1211;
 }
 
-div.container {
+div.app-container {
   height: 100vh;
   width: 100vw;
 }
@@ -25,18 +25,13 @@ a {
   color: #57f;
 }
 
-div#main-container {
-  width: 75vw;
-  margin: 0 auto;
-  padding-top: 30vh;
-}
-
 h1#main-title {
   font-family: "Passion One";
   font-size: 10vh;
   text-align: center;
   color: #dfeabf;
   text-shadow: 0px 0px 20px #9e583f;
+  padding-top: 30vh;
 }
 
 h1#item-title {
@@ -76,4 +71,17 @@ div.value {
 
 div#video-container {
   margin-top: 20vh;
+}
+
+form {
+  width: 100vw;
+  background: #36fcd4;
+  margin-bottom: 0;
+}
+
+input[type="text"]#slug-input {
+  width: 0px;
+  height: 0px;
+  border: none;
+  background: transparent;
 }

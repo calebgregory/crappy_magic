@@ -61,9 +61,9 @@ export default class App extends Component {
   }
 
   render() {
-    return <div>
-      {this.renderView()}
+    return <div className="app-container">
       <ScannerForm onSubmit={this.getItem} />
+      {this.renderView()}
     </div>;
   }
 }
