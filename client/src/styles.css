@@ -1,15 +1,24 @@
 body {
+  background: #1e1211;
+}
+
+div.container {
   height: 100vh;
   width: 100vw;
+}
 
-  font-family: Arial;
-
+div#main-container {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#36fcd4+0,679654+49,1e1211+99 */
   background: #36fcd4; /* Old browsers */
   background: -moz-linear-gradient(top,  #36fcd4 0%, #679654 49%, #1e1211 99%); /* FF3.6-15 */
   background: -webkit-linear-gradient(top,  #36fcd4 0%,#679654 49%,#1e1211 99%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,  #36fcd4 0%,#679654 49%,#1e1211 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36fcd4', endColorstr='#1e1211',GradientType=0 ); /* IE6-9 */
+}
+
+div#item-container {
+  font-family: Arial;
+  color: #679654;
 }
 
 a {
@@ -31,11 +40,11 @@ h1#main-title {
 }
 
 h1#item-title {
-  font-family: "Passion One";
+  font-family: "Crimson Text";
   font-size: 10vh;
   text-align: center;
   color: #dfeabf;
-  text-shadow: 0px 0px 20px #9e583f;
+  margin: 50px 0 30px;
 }
 
 div#item-container {

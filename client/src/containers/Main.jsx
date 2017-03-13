@@ -7,7 +7,7 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div id="main-container">
+      <div id="main-container" className="container">
         <h1 id="main-title">The Crappy Magic Experience</h1>
       </div>
     );

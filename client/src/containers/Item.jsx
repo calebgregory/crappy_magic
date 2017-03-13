@@ -31,7 +31,7 @@ export default class Item extends Component {
     const url = `${config.VIDEO_API_URL}/videos/${slug}`;
 
     return (
-      <div id="item-container">
+      <div id="item-container" className="container">
         <div className="row">
           <h1 id="item-title">{item.title}</h1>
         </div>
