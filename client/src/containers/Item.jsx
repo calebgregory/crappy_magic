@@ -34,7 +34,7 @@ export default class Item extends Component {
   }
 
   render() {
-    const { item, slug } = this.props;
+    const { item, slug, goBack } = this.props;
     const { showVideo }  = this.state;
 
     const url = `${config.VIDEO_API_URL}/videos/${slug}`;
@@ -47,6 +47,9 @@ export default class Item extends Component {
         <div className="row">
           <div className="six columns">
             <ItemInfo item={item} />
+            <div id="go-back">
+              <a onClick={() => goBack()}>Go Back</a>
+            </div>
           </div>
           <div className="six columns">
             <div id="video-container">

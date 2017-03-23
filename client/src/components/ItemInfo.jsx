@@ -17,27 +17,14 @@ export default class ItemInfo extends Component {
         <h5>Materials</h5>
         <div className="text">{item.materials}</div>
 
-        <h5>Manufacture Info</h5>
-        <div className="text">{item.manufacture_info}</div>
-
-        <h5>Owner</h5>
-        <div className="row">
-          <div className="field three columns">Name</div>
-          <div className="value nine columns">{item.owner_name}</div>
-        </div>
-        <div className="row">
-          <div className="field three columns">Email</div>
-          <div className="value nine columns">{item.owner_email}</div>
-        </div>
-
-        <h5>Video Creator</h5>
+        <h5>Artist</h5>
         <div className="row">
           <div className="field three columns">Name</div>
           <div className="value nine columns">{item.video_creator_name}</div>
         </div>
         <div className="row">
-          <div className="field three columns">Email</div>
-          <div className="value nine columns">{item.video_creator_email}</div>
+          <div className="field three columns">Website</div>
+          <div className="value nine columns">{item.video_creator_web_address}</div>
         </div>
         <div className="row">
           <div className="field three columns">Instagram</div>

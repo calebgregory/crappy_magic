@@ -17,7 +17,6 @@ export default class ScannerForm extends Component {
 
   componentDidMount() {
     this.refs.slug.focus();
-    console.log(this.refs.slug)
     const intervalId = setInterval(() => this.refs.slug.focus(), 500);
     this.setState({ intervalId });
   }
@@ -49,7 +48,11 @@ export default class ScannerForm extends Component {
       event.preventDefault();
     }
 
-    this.props.onSubmit(this.state.slug);
+    const { slug } = this.state;
+
+    if (slug === '') { return; }
+
+    this.props.onSubmit(slug);
     this.setState({ slug: '' });
   }
 

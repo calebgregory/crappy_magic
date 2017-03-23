@@ -54,7 +54,7 @@ export default class App extends Component {
       case 'Main':
         return <Main />;
       case 'Item':
-        return <Item item={item} slug={slug} />;
+        return <Item item={item} slug={slug} goBack={() => this.setView('Main')} />;
     }
 
     return null;

@@ -73,6 +73,13 @@ div#video-container {
   margin-top: 20vh;
 }
 
+div#go-back {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 24px;
+  font-style: bold;
+}
+
 form {
   width: 100vw;
   background: #36fcd4;
