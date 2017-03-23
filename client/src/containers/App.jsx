@@ -42,7 +42,7 @@ export default class App extends Component {
     }
 
     this.setState({ view }, () => {
-      const timeoutId = setTimeout(() => setView('Main'), 1000 * 60 * 10 /* 10 minutes */);
+      const timeoutId = setTimeout(() => this.setView('Main'), 1000 * 60 * 10 /* 10 minutes */);
       this.setState({ timeoutId });
     });
   }
