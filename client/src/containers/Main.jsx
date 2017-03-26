@@ -38,6 +38,10 @@ export default class Main extends Component {
     this.animate();
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.state.timeoutId);
+  }
+
   animate() {
     const { timeoutId } = this.state;
 

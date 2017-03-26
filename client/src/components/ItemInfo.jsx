@@ -11,7 +11,7 @@ export default class ItemInfo extends Component {
     const { item } = this.props;
 
     return (
-      <div>
+      <div id="info-container">
         <div className="text">{item.description}</div>
 
         <h5>Materials</h5>

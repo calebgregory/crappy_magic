@@ -51,6 +51,10 @@ div#item-container {
   margin: 0 auto;
 }
 
+div#info-container {
+  margin-top: 50px;
+}
+
 div.text {
   font-family: "Harmattan";
   font-size: 2vh;
@@ -74,7 +78,12 @@ div.value {
 }
 
 div#video-container {
-  margin-top: 20vh;
+  margin-top: 50px;
+}
+
+p#video-note {
+  margin-left: 113px;
+  color: #36fcd4;
 }
 
 div#go-back {
