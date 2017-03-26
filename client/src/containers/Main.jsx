@@ -23,6 +23,7 @@ export default class Main extends Component {
       mouseY: 0,
       timeoutId: null,
       letters,
+      animationType: 'none',
     }
 
     this.animate = this.animate.bind(this);
@@ -57,10 +58,19 @@ export default class Main extends Component {
   }
 
   updateLetters() {
-    const { letters, mouseX, mouseY } = this.state;
+    const { letters, animationType  } = this.state;
 
-    let lx = mouseX;
-    let ly = mouseY - 40;
+    let x0 = 0, y0 = 0;
+
+    if (animationType === 'none') {
+      [x0, y0] = [250, 350];
+    } else if (animationType === 'mouse') {
+      const { mouseX, mouseY } = this.state;
+      [x0, y0] = [mouseX, mouseY];
+    }
+
+    let lx = x0;
+    let ly = y0 - 40;
 
     const nextLetters = letters.map((letter) => {
       const { rt } = letter;
@@ -90,6 +100,10 @@ export default class Main extends Component {
 
   handleMouseMove(event) {
     const { clientX, clientY } = event;
+
+    if (this.state.animationType !== 'mouse') {
+      this.setState({ animationType: 'mouse' });
+    }
 
     this.setState({
       mouseX: clientX,
