@@ -28,10 +28,14 @@ a {
 h1#main-title {
   font-family: "Passion One";
   font-size: 10vh;
-  text-align: center;
   color: #dfeabf;
   text-shadow: 0px 0px 20px #9e583f;
-  padding-top: 30vh;
+  position: absolute;
+}
+
+span {
+  display: inline-block;
+  margin-right: 5px;
 }
 
 h1#item-title {
