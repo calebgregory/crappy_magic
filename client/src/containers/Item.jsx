@@ -47,9 +47,6 @@ export default class Item extends Component {
         <div className="row">
           <div className="six columns">
             <ItemInfo item={item} />
-            <div id="go-back">
-              <a onClick={() => goBack()}>Go Back</a>
-            </div>
           </div>
           <div className="six columns">
             <div id="video-container">
@@ -59,6 +56,11 @@ export default class Item extends Component {
                   <MatureContentWarning onApprove={this.toggleShowVideo} />
               }
             </div>
+          </div>
+        </div>
+        <div className="row">
+          <div id="go-back">
+            <a onClick={() => goBack()}>Go Back</a>
           </div>
         </div>
       </div>
