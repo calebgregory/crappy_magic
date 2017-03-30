@@ -27,6 +27,7 @@
   "dependencies": {
     "file-loader": "^0.10.1",
     "react": "^0.14.8",
-    "react-dom": "^0.14.8"
+    "react-dom": "^0.14.8",
+    "react-hammerjs": "^0.5.0"
   }
 }

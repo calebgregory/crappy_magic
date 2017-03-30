@@ -1,12 +1,3 @@
-body {
-  background: #1e1211;
-}
-
-div.app-container {
-  height: 100vh;
-  width: 100vw;
-}
-
 div#main-container {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#36fcd4+0,679654+49,1e1211+99 */
   background: #36fcd4; /* Old browsers */
@@ -14,11 +5,13 @@ div#main-container {
   background: -webkit-linear-gradient(top,  #36fcd4 0%,#679654 49%,#1e1211 99%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom,  #36fcd4 0%,#679654 49%,#1e1211 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36fcd4', endColorstr='#1e1211',GradientType=0 ); /* IE6-9 */
+  width: 1600px;
+  height: 867px;
 }
 
 div#item-container {
   font-family: Arial;
-  color: #679654;
+  color: #1e1211;
 }
 
 a {
@@ -40,9 +33,8 @@ span {
 
 h1#item-title {
   font-family: "Crimson Text";
-  font-size: 10vh;
   text-align: center;
-  color: #dfeabf;
+  color: #1e1211;
   margin: 50px 0 30px;
 }
 
@@ -82,14 +74,15 @@ div#video-container {
 }
 
 p#video-note {
-  margin-left: 113px;
+  margin-left: 147px;
   color: #36fcd4;
 }
 
 div#go-back {
+  font-family: "Crimson Text";
   text-align: center;
   margin-top: 50px;
-  font-size: 24px;
+  font-size: 28px;
   font-style: bold;
 }
 
@@ -104,4 +97,20 @@ input[type="text"]#slug-input {
   height: 0px;
   border: none;
   background: transparent;
+}
+
+video {
+  max-width: 500px;
+}
+
+video::-internal-media-controls-download-button {
+  display:none;
+}
+
+video::-webkit-media-controls-enclosure {
+  overflow:hidden;
+}
+
+video::-webkit-media-controls-panel {
+  width: calc(100% + 30px);
 }

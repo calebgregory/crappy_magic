@@ -9,7 +9,7 @@ export default class Video extends Component {
     const { url } = this.props;
 
     return <div>
-      <video autoPlay controls>
+      <video controls>
         <source src={url} type="video/mp4" />
       </video>
       <p id="video-note">(Press video for full screen) ^</p>

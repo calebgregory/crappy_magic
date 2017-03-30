@@ -21,12 +21,16 @@ export default class Item extends Component {
   }
 
   componentWillReceiveProps(props) {
-    const { item } = props;
+    const { item, slug } = props;
+    if (this.props.slug !== slug) {
+      this.setState({ showVideo: false });
+    }
+
     const showVideo = (
       item.mature_content === 'false' || item.mature_content !== 'true'
     );
 
-    this.setState({ showVideo });
+    setTimeout(() => this.setState({ showVideo }), 50);
   }
 
   toggleShowVideo() {
@@ -39,11 +43,19 @@ export default class Item extends Component {
 
     const url = `${config.VIDEO_API_URL}/videos/${slug}`;
 
+    console.log('Item render url', url)
+
+    let fontSize;
+    if (item.title.length < 15) {
+      fontSize = '10vh';
+    } else {
+      fontSize = '6vh';
+    }
+    const titleStyle = { fontSize };
+
     return (
       <div id="item-container" className="app-container">
-        <div className="row">
-          <h1 id="item-title">{item.title}</h1>
-        </div>
+        <h1 id="item-title" style={titleStyle}>{item.title}</h1>
         <div className="row">
           <div className="six columns">
             <ItemInfo item={item} />

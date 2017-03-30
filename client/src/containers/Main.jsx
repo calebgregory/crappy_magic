@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TitleCharacter from '../components/TitleCharacter';
+import Hammer from 'react-hammerjs';
 
 function toStatefulLetter(char) {
   return {
@@ -11,6 +12,10 @@ function toStatefulLetter(char) {
 const title = 'The Crappy Magic Experience';
 const a = 0.15;
 const b = 0.5;
+
+function abs(x) {
+  return x < 0 ? -x : x;
+}
 
 export default class Main extends Component {
   constructor(props) {
@@ -30,7 +35,7 @@ export default class Main extends Component {
     this.onAnimate = this.onAnimate.bind(this);
     this.update = this.update.bind(this);
     this.updateLetters = this.updateLetters.bind(this);
-    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handlePan = this.handlePan.bind(this);
     this.renderTitle = this.renderTitle.bind(this);
   }
 
@@ -102,8 +107,12 @@ export default class Main extends Component {
     return { rt: {x, y, vx, vy}, char: letter['char'] }
   }
 
-  handleMouseMove(event) {
-    const { clientX, clientY } = event;
+  handlePan(event) {
+    if (event.isFinal) {
+      return;
+    }
+
+    const { clientX, clientY } = event.srcEvent;
 
     if (this.state.animationType !== 'mouse') {
       this.setState({ animationType: 'mouse' });
@@ -126,9 +135,11 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div id="main-container" className="app-container" onMouseMove={this.handleMouseMove}>
-        <h1 id="main-title">{this.renderTitle()}</h1>
-      </div>
+      <Hammer onPan={this.handlePan}>
+        <div id="main-container" className="app-container">
+          <h1 id="main-title">{this.renderTitle()}</h1>
+        </div>
+      </Hammer>
     );
   }
 }

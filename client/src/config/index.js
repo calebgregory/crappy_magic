@@ -1,6 +1,6 @@
 export default {
-  ITEM_API_URL : 'http://10.123.89.137:4001',
-  VIDEO_API_URL: 'http://10.123.89.137:4002',
+  ITEM_API_URL : 'http://localhost:4001',
+  VIDEO_API_URL: 'http://localhost:4002',
   ITEM_FIELDS: [
     'owner_name',
     'owner_email',
