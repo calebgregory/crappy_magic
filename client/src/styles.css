@@ -101,6 +101,7 @@ input[type="text"]#slug-input {
 
 video {
   max-width: 500px;
+  max-height: 500px;
 }
 
 video::-internal-media-controls-download-button {
