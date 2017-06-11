@@ -55,6 +55,7 @@ div.text {
 h5 {
   margin: 10px 0;
   font-family: "Harmattan";
+  font-size: 3vh;
 }
 
 div.field {
@@ -67,6 +68,11 @@ div.value {
   font-family: "Harmattan";
   font-size: 2vh;
   padding-top: 2px;
+}
+
+div.price {
+  margin-top: -11px;
+  font-size: 5vh;
 }
 
 div#video-container {

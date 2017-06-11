@@ -32,7 +32,7 @@ export default class ItemInfo extends Component {
         </div>
         <div className="row">
           <div className="field three columns">Price</div>
-          <div className="value nine columns">{'$'+item.price}</div>
+          <div className="price value nine columns">{'$'+item.price}</div>
         </div>
       </div>
     );
