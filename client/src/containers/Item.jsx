@@ -43,8 +43,6 @@ export default class Item extends Component {
 
     const url = `${config.VIDEO_API_URL}/videos/${slug}`;
 
-    console.log('Item render url', url)
-
     let fontSize;
     if (item.title.length < 15) {
       fontSize = '10vh';

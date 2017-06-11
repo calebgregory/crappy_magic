@@ -30,6 +30,10 @@ export default class ItemInfo extends Component {
           <div className="field three columns">Instagram</div>
           <div className="value nine columns">{item.video_creator_instagram_handle}</div>
         </div>
+        <div className="row">
+          <div className="field three columns">Price</div>
+          <div className="value nine columns">{'$'+item.price}</div>
+        </div>
       </div>
     );
   }
